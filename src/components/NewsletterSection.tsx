@@ -16,7 +16,7 @@ export const NewsletterSection = () => {
   return (
     <HeadlessNewsletter>
       {(logic) => (
-        <section className="bg-muted/30 py-16 border-y">
+        <section className="bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 py-16 border-y border-border">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {logic.success ? (
               <div className="space-y-4">
@@ -35,11 +35,11 @@ export const NewsletterSection = () => {
             ) : (
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-foreground">
-                    Want promotional emails?
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                    ¿Quieres ofertas exclusivas?
                   </h3>
                   <p className="text-lg text-muted-foreground">
-                    Subscribe to our newsletter and get exclusive offers
+                    Suscríbete a nuestro newsletter y recibe descuentos especiales
                   </p>
                 </div>
                 
@@ -52,19 +52,19 @@ export const NewsletterSection = () => {
                 >
                   <Input 
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="tu@email.com"
                     value={logic.email}
                     onChange={(e) => logic.setEmail(e.target.value)}
                     disabled={logic.isSubmitting}
-                    className="flex-1"
+                    className="flex-1 border-primary/30 focus:border-primary"
                     required
                   />
                   <Button 
                     type="submit"
                     disabled={logic.isSubmitting}
-                    className="sm:w-auto"
+                    className="sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                   >
-                    {logic.isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    {logic.isSubmitting ? 'Suscribiendo...' : 'Suscribirse'}
                   </Button>
                 </form>
                 
