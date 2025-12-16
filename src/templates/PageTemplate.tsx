@@ -83,7 +83,7 @@ export const PageTemplate = ({
         </header>
       )}
       
-      <div className="flex-1 py-6">
+      <div style={{ letterSpacing: '0px', backgroundColor: '#f50a0a' }} className="flex-1 py-6">
         {renderContent()}
       </div>
 
