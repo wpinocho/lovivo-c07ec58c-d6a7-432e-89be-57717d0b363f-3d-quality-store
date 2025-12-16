@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { HeadlessProductCard } from "@/components/headless/HeadlessProductCard"
+import { ARPreview } from "@/components/ARPreview"
 import type { Product } from "@/lib/supabase"
 
 /**
@@ -127,29 +128,38 @@ export const ProductCardUI = ({ product }: ProductCardUIProps) => {
               </div>
             )}
 
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="text-foreground font-bold text-base">
-                  {logic.formatMoney(logic.currentPrice)}
-                </span>
-                {logic.currentCompareAt && logic.currentCompareAt > logic.currentPrice && (
-                  <span className="text-muted-foreground text-xs line-through">
-                    {logic.formatMoney(logic.currentCompareAt)}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="text-foreground font-bold text-base">
+                    {logic.formatMoney(logic.currentPrice)}
                   </span>
-                )}
+                  {logic.currentCompareAt && logic.currentCompareAt > logic.currentPrice && (
+                    <span className="text-muted-foreground text-xs line-through">
+                      {logic.formatMoney(logic.currentCompareAt)}
+                    </span>
+                  )}
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    logic.onAddToCartSuccess()
+                    logic.handleAddToCart()
+                  }}
+                  disabled={!logic.canAddToCart}
+                  className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-0 hover:opacity-90 disabled:opacity-50 shadow-md"
+                >
+                  {logic.inStock ? 'Agregar' : 'Agotado'}
+                </Button>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  logic.onAddToCartSuccess()
-                  logic.handleAddToCart()
-                }}
-                disabled={!logic.canAddToCart}
-                className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-0 hover:opacity-90 disabled:opacity-50 shadow-md"
-              >
-                {logic.inStock ? 'Agregar' : 'Agotado'}
-              </Button>
+              
+              <div className="flex justify-end">
+                <ARPreview 
+                  productName={logic.product.title}
+                  productImage={(logic.matchingVariant?.image as any) || logic.product.images?.[0]}
+                />
+              </div>
             </div>
           </CardContent>
         </Card>

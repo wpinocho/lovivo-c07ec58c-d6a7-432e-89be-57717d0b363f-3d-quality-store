@@ -6,6 +6,14 @@ import { CollectionCard } from '@/components/CollectionCard';
 import { FloatingCart } from '@/components/FloatingCart';
 import { NewsletterSection } from '@/components/NewsletterSection';
 import { EcommerceTemplate } from '@/templates/EcommerceTemplate';
+import { Product3DConfigurator } from '@/components/Product3DConfigurator';
+import { ARPreview } from '@/components/ARPreview';
+import { SupportChat } from '@/components/SupportChat';
+import { CustomQuoteForm } from '@/components/CustomQuoteForm';
+import { BudgetCalculator } from '@/components/BudgetCalculator';
+import { InteractiveFeaturesShowcase } from '@/components/InteractiveFeaturesShowcase';
+import { HowItWorksSection } from '@/components/HowItWorksSection';
+import { InteractiveFAQ } from '@/components/InteractiveFAQ';
 import type { UseIndexLogicReturn } from '@/components/headless/HeadlessIndex';
 
 /**
@@ -96,6 +104,12 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
         </section>
       )}
 
+      {/* Interactive Features Showcase */}
+      <InteractiveFeaturesShowcase />
+
+      {/* How It Works Section */}
+      <HowItWorksSection />
+
       {/* Products Section */}
       <section id="products" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,10 +161,39 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
         </div>
       </section>
 
+      {/* Interactive Tools Section */}
+      <section id="interactive-tools" className="py-16 bg-gradient-to-b from-background via-muted/30 to-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Herramientas Interactivas
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Configura, visualiza y cotiza tus proyectos 3D con nuestras herramientas avanzadas
+            </p>
+          </div>
+
+          {/* Configurador y Calculadora en grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <Product3DConfigurator />
+            <BudgetCalculator />
+          </div>
+
+          {/* Formulario de cotización */}
+          <div className="mt-8">
+            <CustomQuoteForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive FAQ */}
+      <InteractiveFAQ />
+
       {/* Newsletter Section */}
       <NewsletterSection />
 
       <FloatingCart />
+      <SupportChat />
     </EcommerceTemplate>
   );
 };

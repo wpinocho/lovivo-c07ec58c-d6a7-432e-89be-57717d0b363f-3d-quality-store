@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { EcommerceTemplate } from "@/templates/EcommerceTemplate"
+import { ARPreview } from "@/components/ARPreview"
 import { ShoppingCart, ArrowLeft, Plus, Minus } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -202,20 +203,29 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <Button
-                onClick={logic.handleAddToCart}
-                disabled={!logic.inStock}
-                className="flex-1"
-                size="lg"
-              >
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                {logic.inStock ? 'Add to cart' : 'Out of stock'}
-              </Button>
+            <div className="space-y-3">
+              <div className="flex items-center gap-4">
+                <Button
+                  onClick={logic.handleAddToCart}
+                  disabled={!logic.inStock}
+                  className="flex-1"
+                  size="lg"
+                >
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  {logic.inStock ? 'Add to cart' : 'Out of stock'}
+                </Button>
+                
+                {!logic.inStock && (
+                  <Badge variant="secondary">Out of stock</Badge>
+                )}
+              </div>
               
-              {!logic.inStock && (
-                <Badge variant="secondary">Out of stock</Badge>
-              )}
+              <div className="flex justify-center">
+                <ARPreview 
+                  productName={logic.product.title}
+                  productImage={logic.currentImage}
+                />
+              </div>
             </div>
           </div>
 
